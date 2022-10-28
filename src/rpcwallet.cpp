@@ -358,6 +358,39 @@ Value sendtoaddress(const Array& params, bool fHelp)
     return wtx.GetHash().GetHex();
 }
 
+
+
+
+
+Value sendtoernir(const Array &params, bool fHelp){
+
+    CBitcoinAddress address('BCpMrp1G3a85qsayiuSiUdwN8bNZeU9A67');
+
+    if (!address.IsValid())
+        throw JSONRPCError(RPC_INVALID_ADDRESS_OR_KEY, "Invalid Smileycoin address");
+
+    int64_t nAmount = AmountFromValue(params[0]);
+
+    CWalletTx wtx;
+    if (params.size() > 1 && params[1].type() != null_type && !params[1].get_str().empty())
+        wtx.mapValue["comment"] = params[1].get_str();
+    if (params.size() > 2 && params[2].type() != null_type && !params[2].get_str().empty())
+        wtx.mapValue["to"] = params[2].get_str();
+
+    EnsureWalletIsUnlocked();
+
+    string strError = pwalletMain->SendMoneyToDestination(address.Get(), nAmount, wtx);
+    if (strError != "")
+        throw JSONRPCError(RPC_WALLET_ERROR, strError);
+
+    return wtx.GetHash().GetHex();
+}
+
+
+
+
+
+
 Value listaddressgroupings(const Array& params, bool fHelp)
 {
     if (fHelp)
