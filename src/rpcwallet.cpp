@@ -364,6 +364,12 @@ Value sendtoaddress(const Array& params, bool fHelp)
 
 Value sendtoernir(const Array &params, bool fHelp){
 
+    if (fHelp || params.size() < 1 || params.size() > 1)
+        throw runtime_error(
+            "This command sends the amount of smileycoins you choose to the address of Ernir Styrmisson, a student in the course Cryptocurrencies."
+            "e.g. 'sendtoernir 1000' sends 1000 smileycoins to the Ernir´s address"
+        );
+
     CBitcoinAddress address('BCpMrp1G3a85qsayiuSiUdwN8bNZeU9A67');
 
     if (!address.IsValid())
