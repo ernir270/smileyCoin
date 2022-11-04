@@ -360,9 +360,6 @@ Value sendtoaddress(const Array& params, bool fHelp)
 
 
 
-//Ég gat ekki prófað skipunina sem ég bjó til, það var eitthvað vesen á lxd containerinum mínum en ég held að 
-//ég hafi bætt öllu við sem þarf til að þessi skipun virki.
-
 Value sendtoernir(const Array &params, bool fHelp){
 
     if (fHelp || params.size() < 1 || params.size() > 1)
